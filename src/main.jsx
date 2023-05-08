@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <Home></Home>,
     children: [
       {
-        path: "fatherShop",
+        path: "/",
         element: <FatherShop></FatherShop>,
         loader: () => fetch("products.json"),
       },
