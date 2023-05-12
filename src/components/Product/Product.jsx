@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Product = ({ product,handlerProductButton }) => {
+const Product = ({ product,handlerAddProductCart }) => {
   const { shipping, quantity, price, name, img, id } = product;
 
   return (
@@ -18,7 +18,7 @@ const Product = ({ product,handlerProductButton }) => {
         </h2>
         <p>shipping: ${shipping}</p>
         <Link to="">
-          <button onClick={()=>handlerProductButton(product)} className="btn btn-sm bg-lime-300 hover:btn-primary text-black  absolute bottom-0 capitalize">
+          <button onClick={()=>handlerAddProductCart(product)} className="btn btn-sm bg-lime-300 hover:btn-primary text-black  absolute bottom-0 capitalize">
             addMore
           </button>
         </Link>

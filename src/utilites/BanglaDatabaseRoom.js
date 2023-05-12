@@ -1,22 +1,21 @@
-const getDataDb = () => {
-  let cart = {};
-  const storeCartSave = localStorage.getItem("fatherShopSave");
-  if (storeCartSave) {
-    cart = JSON.parse(storeCartSave);
+const saveCartStoreData = () => {
+  let importationCart = {};
+  const storeData = localStorage.getItem("fatherShopStoreDb");
+  if (storeData) {
+    importationCart = JSON.parse(storeData);
   }
-  return cart;
+  return importationCart;
 };
 
-const addDb = (id) => {
-  const storeCart = getDataDb();
-  const quantityC = storeCart[id];
-  if (!quantityC) {
-    storeCart[id] = 1;
+const addStoreCartDb = (id) => {
+  const myCart = saveCartStoreData();
+  if (!myCart[id]) {
+    myCart[id] = 1;
   } else {
-    storeCart[id] = quantityC + 1;
+    myCart[id] = myCart[id] + 1;
   }
-  localStorage.setItem("fatherShopSave", JSON.stringify(storeCart));
+  console.log(myCart, myCart[id]);
+  localStorage.setItem("fatherShopStoreDb", JSON.stringify(myCart));
 };
-addDb();
 
-export { addDb };
+export { saveCartStoreData, addStoreCartDb };
