@@ -1,11 +1,10 @@
 import React from "react";
 
-const AloneCart = ({ boxContainerSaveCart }) => {
-  // console.log(boxContainerSaveCart, "cart");
+const AloneCart = ({ originalCart }) => {
   let totalPrice = 0;
   let totalShipping = 0;
   let quantity = 0;
-  for (const product of boxContainerSaveCart) {
+  for (const product of originalCart) {
     totalPrice = totalPrice + product.price;
     totalShipping = totalShipping + product.shipping;
     quantity = quantity + product.quantity;
@@ -14,7 +13,6 @@ const AloneCart = ({ boxContainerSaveCart }) => {
   const grandTotal = totalPrice + totalShipping + tax;
   return (
     <div className="text-start sticky text-purple-900 text-2xl top-9 p-5 ">
-      <h1>Array{boxContainerSaveCart.length}</h1>
       <h5>Order Quantity: {quantity}</h5>
       <p>Total Price: ${totalPrice} </p>
       <p>Total Shipping Charge: ${totalShipping}</p>

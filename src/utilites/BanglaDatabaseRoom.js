@@ -9,12 +9,15 @@ const saveCartStoreData = () => {
 
 const addStoreCartDb = (id) => {
   const myCart = saveCartStoreData();
-  if (!myCart[id]) {
+  /*  
+ if (!myCart[id]) {
     myCart[id] = 1;
   } else {
     myCart[id] = myCart[id] + 1;
   }
-  console.log(myCart, myCart[id]);
+ */
+  !myCart[id] ? (myCart[id] = 1) : (myCart[id] = myCart[id] + 1);
+
   localStorage.setItem("fatherShopStoreDb", JSON.stringify(myCart));
 };
 

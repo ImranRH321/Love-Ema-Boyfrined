@@ -2,50 +2,45 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Product from "../Product/Product";
 import AloneCart from "../AloneCart/AloneCart";
-import { addStoreCartDb } from "../../utilites/BanglaDatabaseRoom";
+import {
+  addStoreCartDb,
+  saveCartStoreData,
+} from "../../utilites/BanglaDatabaseRoom";
 
 const FatherShop = () => {
   const products = useLoaderData();
-  const [boxContainerSaveCart, setBoxContainerSaveCart] = useState([]);
+  const [originalCart, setOriginalCart] = useState([]);
 
-/*   const handlerProductButton = (clickingProduct) => {
-    let arrayNewCart = [];
-    const existFindOldProductCart = boxContainerSaveCart.find(
-      (pd) => pd.id === clickingProduct.id
-    );
-    if (!existFindOldProductCart) {
-      clickingProduct.quantity = 1;
-      arrayNewCart = [...boxContainerSaveCart, clickingProduct];
-    } else {
-      const restingProduct = boxContainerSaveCart.filter(
-        (pd) => pd.id !== clickingProduct.id
-      );
-      existFindOldProductCart.quantity = existFindOldProductCart.quantity + 1;
-      arrayNewCart = [...restingProduct, existFindOldProductCart];
-    }
-    setBoxContainerSaveCart(arrayNewCart);
-    addDb(clickingProduct.id);
-  }; */
-
-  const handlerAddProductCart = addProduct => {
-    addStoreCartDb(addProduct.id)
-  } 
-  
-
-  // localStorage cart Find data
-/*   useEffect(() => {
-    let findDataShowCart = [];
-    const cartDbProductIdAll = getDataDb();
-    for (const id in cartDbProductIdAll) {
-      const findProduct = products?.find((prod) => prod.id === id);
-      if (findProduct) {
-        findProduct.quantity = cartDbProductIdAll[id];
-        findDataShowCart.push(findProduct);
+  useEffect(() => {
+    let oneProductAdd = [];
+    const fatherStoreDb = saveCartStoreData();
+    for (const storeId in fatherStoreDb) {
+      const findAddProduct = products?.find((p) => p.id === storeId);
+      if (findAddProduct) {
+        findAddProduct.quantity = fatherStoreDb[storeId];
+        oneProductAdd.push(findAddProduct);
       }
-      setBoxContainerSaveCart(findDataShowCart);
+      setOriginalCart(oneProductAdd);
     }
-  }, []); */
-  //
+  }, []);
+
+  // add product //
+  const handlerAddProductCart = (addProduct) => {
+    let duelButSingleCart = [];
+    const checkFindProduct = originalCart.find((p) => p.id === addProduct.id);
+    if (checkFindProduct) {
+      checkFindProduct.quantity = checkFindProduct.quantity + 1;
+      const removeProduct = originalCart.filter((p) => p.id !== addProduct.id);
+      duelButSingleCart = [...removeProduct, checkFindProduct];
+    } else {
+      addProduct.quantity = 1;
+      duelButSingleCart = [...originalCart, addProduct];
+    }
+    setOriginalCart(duelButSingleCart);
+
+    // StoreDb//
+    addStoreCartDb(addProduct.id);
+  };
 
   return (
     <div className="flex">
@@ -61,7 +56,7 @@ const FatherShop = () => {
         </div>
       </div>
       <div className="w-auto border-red-500 bg-blue-300 ">
-        {<AloneCart boxContainerSaveCart={boxContainerSaveCart}></AloneCart>}
+        {<AloneCart originalCart={originalCart}></AloneCart>}
       </div>
     </div>
   );
