@@ -4,7 +4,7 @@ import Product from "../Product/Product";
 import AloneCart from "../AloneCart/AloneCart";
 import {
   addStoreCartDb,
-  saveCartStoreData,
+  saveCartStoreData
 } from "../../utilites/BanglaDatabaseRoom";
 
 const FatherShop = () => {
@@ -42,6 +42,8 @@ const FatherShop = () => {
     addStoreCartDb(addProduct.id);
   };
 
+
+
   return (
     <div className="flex">
       <div className="w-3/4 border-red-500">
@@ -55,8 +57,8 @@ const FatherShop = () => {
           ))}
         </div>
       </div>
-      <div className="w-auto border-red-500 bg-blue-300 ">
-        {<AloneCart originalCart={originalCart}></AloneCart>}
+      <div className=" border-red-500 bg-blue-300 h-[500px] sticky top-0">
+        {<AloneCart originalCart={originalCart}  setOriginalCart={setOriginalCart}></AloneCart>}
       </div>
     </div>
   );
