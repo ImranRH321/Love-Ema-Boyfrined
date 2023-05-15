@@ -6,5 +6,7 @@
 for object and exist quantity plus new quantity.
 5. load cart form localStore find data show reload data 
 6. display clicking handler quantity cart find now exist then product quantity 1 , plush new saveCart [...findProduct, product]
-7. exist find data  then set own quantity + 1,  filterAllCart rest old then product id no exist then saveCart [...aloneCart, restOld]    
+7. exist find data  then set own quantity + 1,  filterAllCart rest old then product id no exist then saveCart [...aloneCart, restOld]  
+8. order Page route see all  exist product and exist cart calculation and. then use custom loader products data load and find localstorage data and return exist product.   
+9. all exist product cart  left side product item     
 */

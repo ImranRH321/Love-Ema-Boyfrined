@@ -10,6 +10,7 @@ const Product = ({ product,handlerAddProductCart }) => {
         <img className="w-50" src={img} alt="Shoes" />
       </figure>
       <div className="">
+        <p>{price}</p>
         <h2 className="2xl">
           {name.slice(0, 17)}
           <p>

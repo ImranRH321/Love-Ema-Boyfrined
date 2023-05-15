@@ -4,13 +4,16 @@ import Product from "../Product/Product";
 import AloneCart from "../AloneCart/AloneCart";
 import {
   addStoreCartDb,
-  saveCartStoreData
+  saveCartStoreData,
 } from "../../utilites/BanglaDatabaseRoom";
 
 const FatherShop = () => {
+
   const products = useLoaderData();
+ 
   const [originalCart, setOriginalCart] = useState([]);
 
+ 
   useEffect(() => {
     let oneProductAdd = [];
     const fatherStoreDb = saveCartStoreData();
@@ -22,19 +25,25 @@ const FatherShop = () => {
       }
       setOriginalCart(oneProductAdd);
     }
-  }, []);
+  }, [products]);
 
   // add product //
   const handlerAddProductCart = (addProduct) => {
     let duelButSingleCart = [];
     const checkFindProduct = originalCart.find((p) => p.id === addProduct.id);
+
     if (checkFindProduct) {
+
       checkFindProduct.quantity = checkFindProduct.quantity + 1;
       const removeProduct = originalCart.filter((p) => p.id !== addProduct.id);
+
       duelButSingleCart = [...removeProduct, checkFindProduct];
+
     } else {
+
       addProduct.quantity = 1;
       duelButSingleCart = [...originalCart, addProduct];
+
     }
     setOriginalCart(duelButSingleCart);
 
@@ -42,13 +51,11 @@ const FatherShop = () => {
     addStoreCartDb(addProduct.id);
   };
 
-
-
   return (
     <div className="flex">
       <div className="w-3/4 border-red-500">
         <div className="product_container grid  md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {products?.map((product) => (
+          {products?.slice(0,6).map((product) => (
             <Product
               product={product}
               handlerAddProductCart={handlerAddProductCart}
@@ -58,7 +65,12 @@ const FatherShop = () => {
         </div>
       </div>
       <div className=" border-red-500 bg-blue-300 h-[500px] sticky top-0">
-        {<AloneCart originalCart={originalCart}  setOriginalCart={setOriginalCart}></AloneCart>}
+        {
+          <AloneCart
+            originalCart={originalCart}
+            setOriginalCart={setOriginalCart}
+          ></AloneCart>
+        }
       </div>
     </div>
   );

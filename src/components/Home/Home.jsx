@@ -1,15 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Header from "../Header/Header";
+import { Outlet, useLoaderData } from "react-router-dom";
 import FatherShop from "../FatherShop/FatherShop";
+import Header from '../Header/Header';
 
 const Home = () => {
+
   return (
     <div>
       <Header></Header>
       <Outlet></Outlet>
-      <FatherShop></FatherShop>
-      
     </div>
   );
 };

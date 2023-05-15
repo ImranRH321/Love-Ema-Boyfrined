@@ -5,16 +5,25 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import FatherShop from "./components/FatherShop/FatherShop.jsx";
+import ProductOrderShow from "./components/ProductOrderShow/ProductOrderShow.jsx";
+import productLoadDataAndCart from "./CustomLoader/CustomLoaderProductCart.js";
+// import { loaderFunction } from "./utilites/BanglaDatabaseRoom.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+
     children: [
       {
-        path: "/",
+        path: "/shop",
         element: <FatherShop></FatherShop>,
         loader: () => fetch("products.json"),
+      },
+      {
+        path: "/order",
+        element: <ProductOrderShow></ProductOrderShow>, 
+        loader: productLoadDataAndCart,
       },
     ],
   },
