@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AloneCart = ({ originalCart, setOriginalCart }) => {
-  console.log("cart", originalCart);
+const AloneCart = ({ originalCart, setOriginalCart,children }) => {
+
   let totalPrice = 0;
   let totalShipping = 0;
   let quantity = 0;
@@ -29,13 +29,11 @@ const AloneCart = ({ originalCart, setOriginalCart }) => {
         <h2>Grand Total: ${grandTotal.toFixed(2)}</h2>
         <button
           onClick={handlerAllCartRemove}
-          className="btn btn-danger  bold btn-sm"
+          className="btn bg-red-500 hover:bg-red-400  mb-2  bold btn-sm"
         >
           Clear cArt
         </button>
-        <Link to="/order">
-          <button className="btn btn-primary ms-4 btn-sm">My Order </button>
-        </Link>
+        {children}
       </div>
     </div>
   );

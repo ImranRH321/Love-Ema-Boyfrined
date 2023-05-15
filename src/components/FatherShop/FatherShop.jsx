@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Product from "../Product/Product";
 import AloneCart from "../AloneCart/AloneCart";
 import {
@@ -8,12 +8,10 @@ import {
 } from "../../utilites/BanglaDatabaseRoom";
 
 const FatherShop = () => {
-
   const products = useLoaderData();
- 
+
   const [originalCart, setOriginalCart] = useState([]);
 
- 
   useEffect(() => {
     let oneProductAdd = [];
     const fatherStoreDb = saveCartStoreData();
@@ -33,17 +31,13 @@ const FatherShop = () => {
     const checkFindProduct = originalCart.find((p) => p.id === addProduct.id);
 
     if (checkFindProduct) {
-
       checkFindProduct.quantity = checkFindProduct.quantity + 1;
       const removeProduct = originalCart.filter((p) => p.id !== addProduct.id);
 
       duelButSingleCart = [...removeProduct, checkFindProduct];
-
     } else {
-
       addProduct.quantity = 1;
       duelButSingleCart = [...originalCart, addProduct];
-
     }
     setOriginalCart(duelButSingleCart);
 
@@ -55,7 +49,7 @@ const FatherShop = () => {
     <div className="flex">
       <div className="w-3/4 border-red-500">
         <div className="product_container grid  md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {products?.slice(0,6).map((product) => (
+          {products?.slice(0, 6).map((product) => (
             <Product
               product={product}
               handlerAddProductCart={handlerAddProductCart}
@@ -69,7 +63,11 @@ const FatherShop = () => {
           <AloneCart
             originalCart={originalCart}
             setOriginalCart={setOriginalCart}
-          ></AloneCart>
+          >
+            <Link to="/order">
+              <button className="btn btn-warning w-3/4 btn-sm">Review Order </button>
+            </Link>
+          </AloneCart>
         }
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import AloneCart from "../AloneCart/AloneCart";
 import OrderReviewProductSingleItem from "../OrderReviewProductSingleItem/OrderReviewProductSingleItem";
 import { deletedOrderProduct } from "../../utilites/BanglaDatabaseRoom";
@@ -10,9 +10,9 @@ const ProductOrderShow = () => {
 
   const handleDeletedProduct = (id) => {
     const deletedProduct = originalCart.filter((product) => product.id !== id);
-    alert('Are sure Deleted')
+    alert("Are sure Deleted");
     setOriginalCart(deletedProduct);
-    deletedOrderProduct(id)
+    deletedOrderProduct(id);
   };
 
   return (
@@ -29,7 +29,16 @@ const ProductOrderShow = () => {
         </div>
       </div>
       <div className="cart_container border">
-        <AloneCart originalCart={originalCart}></AloneCart>
+        <AloneCart
+          originalCart={originalCart}
+          setOriginalCart={setOriginalCart}
+        >
+          <Link to="/checkout">
+            <button className="btn btn-success  btn-sm">
+              Proceed Checkout{" "}
+            </button>
+          </Link>
+        </AloneCart>
       </div>
     </div>
   );

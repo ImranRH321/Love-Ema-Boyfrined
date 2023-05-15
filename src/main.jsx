@@ -7,6 +7,7 @@ import Home from "./components/Home/Home.jsx";
 import FatherShop from "./components/FatherShop/FatherShop.jsx";
 import ProductOrderShow from "./components/ProductOrderShow/ProductOrderShow.jsx";
 import productLoadDataAndCart from "./CustomLoader/CustomLoaderProductCart.js";
+import CheckOutPage from "./components/CheckOutPage/CheckOutPage.jsx";
 // import { loaderFunction } from "./utilites/BanglaDatabaseRoom.js";
 
 const router = createBrowserRouter([
@@ -22,8 +23,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/order",
-        element: <ProductOrderShow></ProductOrderShow>, 
+        element: <ProductOrderShow></ProductOrderShow>,
         loader: productLoadDataAndCart,
+      },
+      {
+        path: "/checkout",
+        element: <CheckOutPage></CheckOutPage>,
       },
     ],
   },
