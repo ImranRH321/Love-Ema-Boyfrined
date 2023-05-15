@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderReviewProductSingleItem = ({ product }) => {
+const OrderReviewProductSingleItem = ({ product ,handleDeletedProduct}) => {
   const { shipping, quantity, price, name, img, id } = product;
 
   return (
@@ -15,7 +15,7 @@ const OrderReviewProductSingleItem = ({ product }) => {
         <h5>quantity: ${quantity}</h5>
       </div>
       <div>
-        <button className="btn btn-error btn-sm text-end">XDelete</button>
+        <button onClick={()=>handleDeletedProduct(id)} className="btn btn-error btn-sm text-end">XDelete</button>
       </div>
       </div>
   );

@@ -21,6 +21,26 @@ const addStoreCartDb = (id) => {
   localStorage.setItem("fatherShopStoreDb", JSON.stringify(myCart));
 };
 
+const deletedOrderProduct = (id) => {
+  // alert(id)
+  const storeShoppingCart = saveCartStoreData();
+  /* 
+    if (id in storeShoppingCart) {
+    delete storeShoppingCart[id];
+    localStorage.setItem("fatherShopStoreDb", JSON.stringify(storeShoppingCart))
+  } 
+  */
+  /* 
+  if (storeShoppingCart) {
+    delete storeShoppingCart[id];
+    localStorage.setItem(
+      "fatherShopStoreDb",
+      JSON.stringify(storeShoppingCart)
+    );
+  } */
 
+  id && delete storeShoppingCart[id];
+  localStorage.setItem("fatherShopStoreDb", JSON.stringify(storeShoppingCart));
+};
 
-export { saveCartStoreData, addStoreCartDb };
+export { saveCartStoreData, addStoreCartDb, deletedOrderProduct };
